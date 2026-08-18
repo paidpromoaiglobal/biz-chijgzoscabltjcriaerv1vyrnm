@@ -100,6 +100,18 @@ section{padding:72px 5vw}
 @media(min-width:600px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
 .gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;transition:transform .3s,opacity .3s}
 .gallery-grid img:hover{transform:scale(1.03);opacity:.9}
+/* ENQUIRY FORM */
+.enquiry-form{max-width:720px;margin:0 auto;background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:36px 28px}
+.ef-row{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:640px){.ef-row{grid-template-columns:1fr 1fr;gap:18px}}
+.ef-field{margin-bottom:18px}
+.ef-field label{display:block;font-size:.85rem;font-weight:600;color:#0f172a;margin-bottom:7px}
+.ef-field input,.ef-field select,.ef-field textarea{width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:.9rem;color:#0f172a;background:#fff;transition:border-color .2s}
+.ef-field input:focus,.ef-field select:focus,.ef-field textarea:focus{outline:none;border-color:#1A1A2E}
+.ef-field textarea{resize:vertical}
+.ef-submit{width:100%;background:linear-gradient(135deg,#1A1A2E 0%,#C0392B 100%);color:#fff;border:none;padding:16px;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;transition:transform .15s,box-shadow .15s;margin-top:6px}
+.ef-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.ef-note{text-align:center;color:#94a3b8;font-size:.78rem;margin-top:14px}
 /* REVIEWS */
 .reviews-bg{background:#0f172a}
 .rv-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:40px}
@@ -195,7 +207,55 @@ footer{background:#020617;color:#334155;padding:28px 5vw;display:flex;flex-direc
   </div>
 </div>
 
-<section><div class="container"><div class="sec-head" data-r><p class="sec-eyebrow">Our Space</p><h2>A Look Inside</h2></div><div class="gallery-grid"><img src="./img/photo-0.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551076805-e1869033e561?w=1600&q=85&fit=crop&auto=format'"><img src="./img/photo-1.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1629909615957-be38d48fbbe4?w=1600&q=85&fit=crop&auto=format'"><img src="./img/photo-2.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?w=1600&q=85&fit=crop&auto=format'"><img src="./img/photo-3.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=85&fit=crop&auto=format'"><img src="./img/photo-4.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1600&q=85&fit=crop&auto=format'"></div></div></section>
+<section><div class="container"><div class="sec-head" data-r><p class="sec-eyebrow">Our Space</p><h2>A Look Inside</h2></div><div class="gallery-grid"><img src="./img/photo-0.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551076805-e1869033e561?w=1600&q=85&fit=crop&auto=format'"><img src="./img/photo-4.jpg" alt="International Combat Sports &amp; Martial Arts Academy" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1600&q=85&fit=crop&auto=format'"></div></div></section>
+
+<section id="enquiry">
+  <div class="container">
+    <div class="sec-head" data-r>
+      <p class="sec-eyebrow">Get In Touch</p>
+      <h2>Enquire Now</h2>
+      <p>Have questions about our training programs? Fill in your details and our team will get back to you shortly.</p>
+    </div>
+    <form class="enquiry-form" data-r data-d="2" onsubmit="return sendEnquiry(event)">
+      <div class="ef-row">
+        <div class="ef-field"><label>Full Name *</label><input type="text" id="efName" placeholder="Enter your full name" required></div>
+        <div class="ef-field"><label>Phone Number *</label><input type="tel" id="efPhone" placeholder="Enter your phone number" required></div>
+      </div>
+      <div class="ef-row">
+        <div class="ef-field"><label>Email Address</label><input type="email" id="efEmail" placeholder="Enter your email address"></div>
+        <div class="ef-field"><label>Age Group *</label>
+          <select id="efAge" required>
+            <option value="" disabled selected>Select your age group</option>
+            <option>Under 12</option><option>13–17</option><option>18–30</option><option>31–45</option><option>46+</option>
+          </select>
+        </div>
+      </div>
+      <div class="ef-field"><label>Interested Program *</label>
+        <select id="efProgram" required>
+          <option value="" disabled selected>Select the training program you are interested in</option>
+          <option>Mixed Martial Arts (MMA)</option><option>Self-Defense Training</option><option>Boxing</option><option>Kickboxing</option><option>Fitness &amp; Conditioning</option><option>Kids Martial Arts Program</option>
+        </select>
+      </div>
+      <div class="ef-row">
+        <div class="ef-field"><label>Preferred Training Day</label>
+          <select id="efDay">
+            <option value="" disabled selected>Select preferred day</option>
+            <option>Monday</option><option>Wednesday</option><option>Friday</option><option>Sunday</option>
+          </select>
+        </div>
+        <div class="ef-field"><label>Preferred Training Time</label>
+          <select id="efTime">
+            <option value="" disabled selected>Select preferred time</option>
+            <option>4:00 PM – 5:00 PM</option><option>5:00 PM – 6:00 PM</option><option>6:00 PM – 7:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="ef-field"><label>Message / Enquiry *</label><textarea id="efMsg" rows="4" placeholder="Write your message or enquiry here..." required></textarea></div>
+      <button type="submit" class="ef-submit">📩 Submit Enquiry →</button>
+      <p class="ef-note">🔒 Your information is safe and will only be used to respond to your enquiry.</p>
+    </form>
+  </div>
+</section>
 
 <section class="reviews-bg">
   <div class="container">
@@ -243,6 +303,27 @@ footer{background:#020617;color:#334155;padding:28px 5vw;display:flex;flex-direc
 </a>
 
 <script>
+function sendEnquiry(e){
+  e.preventDefault();
+  var name=document.getElementById('efName').value.trim();
+  var phone=document.getElementById('efPhone').value.trim();
+  var email=document.getElementById('efEmail').value.trim();
+  var age=document.getElementById('efAge').value;
+  var program=document.getElementById('efProgram').value;
+  var day=document.getElementById('efDay').value;
+  var time=document.getElementById('efTime').value;
+  var msg=document.getElementById('efMsg').value.trim();
+  var text='Hello! I would like to enquire about training at International Combat Sports & Martial Arts Academy.\n\n'
+    +'Name: '+name+'\nPhone: '+phone
+    +(email?'\nEmail: '+email:'')
+    +(age?'\nAge Group: '+age:'')
+    +(program?'\nInterested Program: '+program:'')
+    +(day?'\nPreferred Day: '+day:'')
+    +(time?'\nPreferred Time: '+time:'')
+    +'\n\nMessage: '+msg;
+  window.open('https://wa.me/918638307884?text='+encodeURIComponent(text),'_blank');
+  return false;
+}
 // Scroll-reveal
 (function(){
   var els=document.querySelectorAll('[data-r]');
